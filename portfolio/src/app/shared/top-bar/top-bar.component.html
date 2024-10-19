@@ -1,0 +1,45 @@
+<div class="p-4 flex justify-end items-center py-2">
+  <div class="hidden md:flex space-x-11">
+    <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+  </div>
+
+  @if (showMobileMenu) {
+  <button
+    id="menu-toggle"
+    class="md:hidden z-50 py-8"
+    (click)="toggleMobileMenu()"
+  >
+    <i class="fa-solid fa-xmark fa-lg"></i>
+  </button>
+  } @else {
+  <button
+    id="menu-toggle"
+    class="md:hidden z-50 py-8"
+    (click)="toggleMobileMenu()"
+  >
+    <i class="fa-solid fa-bars fa-lg"></i></button
+  >}
+</div>
+@if (init) {
+<div
+  class="fixed inset-0 dark:bg-black bg-white bg-opacity-95 flex items-center justify-center z-40"
+  [ngClass]="{
+    'slide-in': showMobileMenu,
+    'slide-out': !showMobileMenu
+  }"
+>
+  <div class="flex flex-1 flex-col justify-around items-start text-start m-11">
+    <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+  </div>
+</div>
+}
+
+<ng-template #menuItems>
+  @for (category of menuCategories; track $index) {
+  <a
+    (click)="navigateTo(category)"
+    class="hover:text-gray-400 text-5xl my-10 lg:text-base cursor-pointer"
+    >{{ category }}</a
+  >
+  }
+</ng-template>

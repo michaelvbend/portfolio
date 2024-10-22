@@ -1,12 +1,59 @@
 <section>
-  <div>
-    <img
-      src="intro-image.jpg"
-      width="300"
-      height="300"
-      class="rounded-full"
-      alt="Intro Image"
-      s
-    />
+  <h1 class="text-3xl md:text-5xl font-bold">About me</h1>
+  <hr class="border-1 my-5" />
+
+  <div class="flex flex-col md:flex-row md:space-x-10 lg:space-x-40">
+    <div class="flex flex-col flex-start items-center my-10">
+      <img
+        src="profile-pic.jpg"
+        class="rounded-full w-64 h-64 my-8 md:w-52 md:h-52 lg:w-52 lg:h-52 z-52 shadow-lg"
+        alt="Profile picture"
+      />
+
+      <h2 class="text-2xl md:text-3xl font-semibold">Michael van der Bend</h2>
+      <h3 class="font-light">{{ currentRole }}</h3>
+      <h3 class="font-light">Currently &#64; {{ currentEmployer }}</h3>
+    </div>
+    <div class="flex-1 flex-col">
+      <p class="leading-6">
+        A passionate software engineer with a drive to evolve, innovate, and
+        inspire through technology. <br />
+        Currently, I work at Rabobank in the Netherlands as a Full-stack DevOps
+        Developer, utilizing Java on the backend and Angular on the frontend.
+        <br /><br />
+        Prior to this, I built a strong foundation in Business Intelligence.
+        This experience has given me a deep understanding of how to align
+        technical solutions with customer needs, which I now apply daily as a
+        software engineer.
+        <br />
+        In addition to my backend work, I have a strong passion for front-end
+        development, working extensively with both Angular and React (Native). I
+        enjoy exploring the differences and strengths of these frameworks.
+        <br /><br />
+        Beyond my professional role, I enjoy working on personal tech projects
+        and continuously sharpening my skills by reading books on software
+        development. I'm also currently pursuing a pre-master's in Software
+        Engineering part-time to further enhance my expertise.
+      </p>
+      <button
+        class="border-x-4 border-y-4 p-1 my-5 rounded-md hover:bg-gray-800"
+      >
+        <span class="flex flex-row items-center space-x-3">
+          <h3 class="text-xl font-semibold">Resume</h3>
+          <i class="fa-solid fa-download"></i>
+        </span>
+      </button>
+      <h3 class="text-2xl font-semibold my-1">Skills</h3>
+      <div class="flex flex-1 flex-wrap items-center gap-1">
+        @for (skill of skillList; track $index) {
+        <div
+          class="p-1 rounded-md text-white"
+          [ngStyle]="{ 'background-color': skill.color }"
+        >
+          {{ skill.name }}
+        </div>
+        }
+      </div>
+    </div>
   </div>
 </section>

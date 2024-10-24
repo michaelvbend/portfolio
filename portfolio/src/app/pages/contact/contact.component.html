@@ -22,6 +22,55 @@
         >GitHub</a
       >
     </div>
-    <p class="mt-4 md:mt-0">Send message</p>
+    <div class="flex-1">
+      <p class="mt-4 md:mt-0">Send message</p>
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="name-field" class="block">Name:</label>
+          <input
+            id="name-field"
+            type="text"
+            formControlName="name"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="company" class="block">Company:</label>
+          <input
+            id="company"
+            type="text"
+            formControlName="company"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="email-field" class="block">Email:</label>
+          <input
+            id="email-field"
+            type="email"
+            formControlName="email"
+            class="w-full p-2 border rounded"
+          />
+          @if (contactForm.get('email')?.invalid) {
+          <p>Required</p>
+
+          }
+        </div>
+        <div class="mb-4">
+          <label for="message-field" class="block">Message:</label>
+          <textarea
+            id="message-field"
+            formControlName="message"
+            class="w-full p-2 border rounded"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+        >
+          Send
+        </button>
+      </form>
+    </div>
   </div>
 </section>

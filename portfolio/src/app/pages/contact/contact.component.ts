@@ -5,12 +5,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ValidationErrorPipe } from '../../core/utils/validation-error.pipe';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ValidationErrorPipe, NgTemplateOutlet],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
@@ -25,11 +27,9 @@ export class ContactComponent {
     message: new FormControl('', Validators.required),
   });
 
-  // TODO: CHECKOUT https://www.youtube.com/watch?v=mOYAB1uMyhQ
-
   onSubmit(): void {
     if (this.contactForm.valid) {
-      console.log('test');
+      // TODO: Send request to backend
       console.log(this.contactForm.value);
     }
   }

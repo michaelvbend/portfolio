@@ -33,6 +33,9 @@
             formControlName="name"
             class="w-full p-2 border rounded"
           />
+          <ng-container
+            *ngTemplateOutlet="errorMessage; context: { formControl: 'name' }"
+          ></ng-container>
         </div>
         <div class="mb-4">
           <label for="company" class="block">Company:</label>
@@ -42,6 +45,12 @@
             formControlName="company"
             class="w-full p-2 border rounded"
           />
+          <ng-container
+            *ngTemplateOutlet="
+              errorMessage;
+              context: { formControl: 'company' }
+            "
+          ></ng-container>
         </div>
         <div class="mb-4">
           <label for="email-field" class="block">Email:</label>
@@ -51,10 +60,9 @@
             formControlName="email"
             class="w-full p-2 border rounded"
           />
-          @if (contactForm.get('email')?.invalid) {
-          <p>Required</p>
-
-          }
+          <ng-container
+            *ngTemplateOutlet="errorMessage; context: { formControl: 'email' }"
+          ></ng-container>
         </div>
         <div class="mb-4">
           <label for="message-field" class="block">Message:</label>
@@ -63,6 +71,12 @@
             formControlName="message"
             class="w-full p-2 border rounded"
           ></textarea>
+          <ng-container
+            *ngTemplateOutlet="
+              errorMessage;
+              context: { formControl: 'message' }
+            "
+          ></ng-container>
         </div>
         <button
           type="submit"
@@ -74,3 +88,9 @@
     </div>
   </div>
 </section>
+
+<ng-template #errorMessage let-formControl="formControl">
+  @if (contactForm.get(formControl)?.dirty) {
+  <p>{{ contactForm.get(formControl)?.errors | validationError }}</p>
+  }
+</ng-template>

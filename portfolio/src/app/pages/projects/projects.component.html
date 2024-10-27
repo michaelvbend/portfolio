@@ -1,0 +1,45 @@
+<section>
+  <h1 class="text-3xl md:text-5xl font-bold">Projects</h1>
+  <hr class="border-1 my-5" />
+  <div class="flex flex-row flex-wrap gap-2 justify-center md:justify-between">
+    @for (project of projects; track $index) {
+    <ng-container
+      *ngTemplateOutlet="projectCard; context: { project: project }"
+    ></ng-container>
+    } @empty {
+    <p>No projects found</p>
+    }
+  </div>
+</section>
+
+<ng-template #projectCard let-project="project">
+  <div
+    class="max-w-sm md:max-w-xs rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800"
+  >
+    <img
+      class="w-full h-48 object-cover"
+      src="{{ project.imgUrl }}"
+      alt="{{ project.name }}"
+    />
+    <div class="px-6 py-4">
+      <div
+        class="font-bold text-xl mb-2 text-center text-gray-900 dark:text-gray-100"
+      >
+        {{ project.name }}
+      </div>
+      <p class="text-gray-700 text-base line-clamp-6 dark:text-gray-300">
+        {{ project.description }}
+      </p>
+    </div>
+    <div class="px-6 pb-2 flex flex-row justify-center">
+      <span
+        class="inline-block bg-gray-200 dark:bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-300 mr-2 mb-2"
+        >GitHub</span
+      >
+      <span
+        class="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2"
+        >Read more</span
+      >
+    </div>
+  </div>
+</ng-template>

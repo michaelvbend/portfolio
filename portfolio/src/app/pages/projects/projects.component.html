@@ -1,14 +1,33 @@
+@let projects = $projects | async;
 <section>
   <h1 class="text-3xl md:text-5xl font-bold">Projects</h1>
   <hr class="border-1 my-5" />
   <div class="flex flex-row flex-wrap gap-2 justify-center md:justify-between">
-    @for (project of projects; track $index) {
+    @if (loading) { @for(skeleton of skeletons; track $index) {
+    <div
+      class="max-w-sm md:max-w-xs rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 animate-pulse"
+    >
+      <div class="w-full h-48 bg-gray-300 dark:bg-gray-700"></div>
+      <div class="px-6 py-4">
+        <div class="h-6 bg-gray-300 dark:bg-gray-700 mb-2"></div>
+        <div class="h-4 bg-gray-300 dark:bg-gray-700"></div>
+      </div>
+      <div class="px-6 pb-2 flex flex-row justify-center">
+        <div
+          class="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded-full mr-2 mb-2"
+        ></div>
+        <div
+          class="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded-full mr-2 mb-2"
+        ></div>
+      </div>
+    </div>
+    } } @else { @for (project of projects; track $index) {
     <ng-container
       *ngTemplateOutlet="projectCard; context: { project: project }"
     ></ng-container>
     } @empty {
     <p>No projects found</p>
-    }
+    } }
   </div>
 </section>
 

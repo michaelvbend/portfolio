@@ -1,33 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Project } from './projects.interface';
-import { NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { ProjectService } from '../../features/services/projects.service';
+import { finalize, Observable, of, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, AsyncPipe],
   templateUrl: './projects.component.html',
 })
-export class ProjectsComponent {
-  projects: Project[] = [
-    {
-      name: 'Arnhem Guide App',
-      description:
-        'The Arnhem Guide App is a travel companion for exploring Arnhem, Netherlands. It provides users with curated guides to local landmarks, events, dining options, and nearby attractions.',
-      imgUrl: 'arnhem-guide-app.jpg',
-    },
-    {
-      name: 'Lumios',
-      description:
-        'This Spring Boot application serves as a backend for a book discovery platform, allowing users to fetch books and search for specific titles using image-based recognition with the Google Vision API.',
-      imgUrl:
-        'https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=754&fit=clip',
-    },
-    {
-      name: 'Portfolio',
-      description:
-        'portfolio website showcases a range of projects and skills in software engineering and development. It highlights expertise in back-end development with Spring Boot, front-end experience with Angular and React (Native), and DevOps practices.',
-      imgUrl: 'intro-image-dark.jpg',
-    },
-  ];
+export class ProjectsComponent implements OnInit {
+  $projects: Observable<Project[]> = of([]);
+  loading = false;
+  skeletons = Array(3).fill(0);
+
+  constructor(private projectService: ProjectService) {}
+
+  ngOnInit(): void {
+    this.loading = true;
+    this.$projects = this.projectService
+      .getProjects()
+      .pipe(finalize(() => (this.loading = false)));
+  }
 }

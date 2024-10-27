@@ -2,28 +2,38 @@
   <h1 class="text-3xl md:text-5xl font-bold">Contact</h1>
   <hr class="border-1 my-5" />
 
-  <div class="flex flex-col md:flex-row md:space-x-10 lg:space-x-40">
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Reach out</h2>
-
-      <a
-        class="block bg-blue-500 text-white py-2 px-4 rounded mb-2 hover:bg-blue-700"
-        href="mailto:{{ email }}"
-        >Email</a
-      >
-      <a
-        class="block bg-blue-700 text-white py-2 px-4 rounded mb-2 hover:bg-blue-900"
-        href="{{ linkedin }}"
-        >LinkedIn</a
-      >
-      <a
-        class="block bg-gray-800 text-white py-2 px-4 rounded mb-2 hover:bg-gray-900"
-        href="{{ github }}"
-        >GitHub</a
-      >
-    </div>
+  <div class="flex flex-col md:flex-row md:space-x-5 lg:space-x-5">
     <div class="flex-1">
-      <p class="mt-4 md:mt-0">Send message</p>
+      <h2 class="text-2xl font-semibold mb-4">Reach out</h2>
+      <p class="mb-5">
+        If you have any questions or would like to connect, feel free to reach
+        out through any of the following platforms:
+      </p>
+      <div class="flex flex-col max-xl:space-y-2 sm:flex-row sm:justify-center">
+        <a
+          class="w-full sm:w-1/2 bg-blue-500 text-white py-2 px-4 rounded sm:mr-2 hover:bg-blue-700 text-center"
+          href="mailto:{{ email }}"
+          >Email</a
+        >
+        <a
+          class="w-full sm:w-1/2 bg-blue-700 text-white py-2 px-4 rounded sm:mr-2 hover:bg-blue-900 text-center"
+          href="{{ linkedin }}"
+          >LinkedIn</a
+        >
+        <a
+          class="w-full sm:w-1/2 bg-gray-800 text-white py-2 px-4 rounded sm:mr-2 hover:bg-gray-900 text-center"
+          href="{{ github }}"
+          >GitHub</a
+        >
+      </div>
+    </div>
+    <hr class="border-1 m-8" />
+
+    <div class="flex-1">
+      <h2 class="text-2xl font-semibold mb-4">Send message</h2>
+      @if (showAlert) {
+      <ng-container *ngTemplateOutlet="successAlert"></ng-container>
+      }
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
           <label for="name-field" class="block">Name:</label>
@@ -79,8 +89,9 @@
           ></ng-container>
         </div>
         <button
+          [disabled]="!contactForm.valid"
           type="submit"
-          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+          class="bg-blue-500 text-white py-2 w-full px-4 rounded hover:bg-blue-700 disabled:opacity-50"
         >
           Send
         </button>
@@ -91,6 +102,35 @@
 
 <ng-template #errorMessage let-formControl="formControl">
   @if (contactForm.get(formControl)?.dirty) {
-  <p>{{ contactForm.get(formControl)?.errors | validationError }}</p>
+  <p class="text-red-500 dark:text-red-300">
+    {{ contactForm.get(formControl)?.errors | validationError }}
+  </p>
   }
+</ng-template>
+
+<ng-template #successAlert>
+  <div
+    class="bg-teal-100 dark:bg-teal-900 rounded-md text-teal-900 dark:text-teal-100 px-4 py-3 shadow-md mb-5"
+    role="alert"
+  >
+    <div class="flex justify-between items-center">
+      <div>
+        <p class="font-bold">Message sent!</p>
+        <p class="text-sm">I will reach out to you shortly.</p>
+      </div>
+      <button (click)="dismissAlert()" class="focus:outline-none">
+        <svg
+          class="fill-current h-6 w-6 text-teal-900 dark:text-teal-100"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
 </ng-template>

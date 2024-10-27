@@ -14,7 +14,6 @@ export class ValidationErrorPipe implements PipeTransform {
   };
 
   transform(errors: ValidationErrors | null | undefined): string {
-    console.log('test');
     return errors
       ? Object.entries(errors)
           .map(([key, value]) =>

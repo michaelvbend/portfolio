@@ -9,7 +9,6 @@ import { ValidationErrorPipe } from '../../core/utils/validation-error.pipe';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-contact',
   standalone: true,
   imports: [ReactiveFormsModule, ValidationErrorPipe, NgTemplateOutlet],
@@ -19,6 +18,7 @@ export class ContactComponent {
   email = 'mvanderbend@gmail.com';
   linkedin = 'https://www.linkedin.com/in/michael-vd-bend/';
   github = 'https://github.com/michaelvbend';
+  showAlert = false;
 
   contactForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -30,7 +30,12 @@ export class ContactComponent {
   onSubmit(): void {
     if (this.contactForm.valid) {
       // TODO: Send request to backend
-      console.log(this.contactForm.value);
+      this.showAlert = true;
+      this.contactForm.reset();
     }
+  }
+
+  dismissAlert(): void {
+    this.showAlert = false;
   }
 }

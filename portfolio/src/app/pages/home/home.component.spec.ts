@@ -3,9 +3,11 @@ import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
-
+  const mockThemeService = {
+    getPreferredColorScheme: jest.fn(),
+  };
   beforeEach(() => {
-    component = new HomeComponent();
+    component = new HomeComponent(mockThemeService);
   });
 
   it('should create', () => {

@@ -46,19 +46,21 @@
       >
         {{ project.name }}
       </div>
-      <p class="text-gray-700 text-base line-clamp-6 dark:text-gray-300">
-        {{ project.description }}
-      </p>
+      <p
+        [innerHTML]="project.description"
+        class="text-gray-700 text-base line-clamp-6 dark:text-gray-300"
+      ></p>
     </div>
     <div class="px-6 pb-2 flex flex-row justify-center">
-      <span
+      <a
+        [href]="project.githubLink"
         class="inline-block bg-gray-200 dark:bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-300 mr-2 mb-2"
-        >GitHub</span
+        >GitHub</a
       >
-      <span
-        (click)="navigateToDetailPage(project)"
+      <a
+        [routerLink]="['/projects', project.name]"
         class="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2"
-        >Read more</span
+        >Read more</a
       >
     </div>
   </div>

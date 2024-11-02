@@ -1,23 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { Router } from '@angular/router';
+import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../projects.interface';
+import { skills } from '../../../shared/shared.constants';
+import { ProjectService } from '../../../features/services/projects.service';
+import { finalize, first, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [NgTemplateOutlet, AsyncPipe],
+  imports: [NgTemplateOutlet, AsyncPipe, NgStyle],
   templateUrl: './project-details.component.html',
 })
 export class ProjectDetailsComponent implements OnInit {
-  project = {} as Project;
+  $project!: Observable<Project>;
+  isLoading = false;
+  skillListConstant = skills;
 
-  constructor(private route: Router) {
-    const navigation = this.route.getCurrentNavigation();
-    if (navigation?.extras?.state) {
-      this.project = navigation.extras.state['project'];
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {}
+
+  ngOnInit(): void {
+    this.setProject();
   }
 
-  ngOnInit(): void {}
+  private setProject() {
+    this.isLoading = true;
+    this.$project = this.projectService
+      .getProjects(this.route.snapshot.params['projectName'])
+      .pipe(
+        map((result) => result[0]),
+        finalize(() => (this.isLoading = false))
+      );
+  }
 }

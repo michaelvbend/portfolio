@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/projects",
+    "queryParameters": {
+      "name": {
+        "equalTo": "Arnhem Guide App"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "project-response.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    }
+  }
+}

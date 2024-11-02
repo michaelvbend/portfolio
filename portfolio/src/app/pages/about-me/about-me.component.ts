@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { currentEmployer, currentRole, skills } from './about-me.constants';
+import { currentEmployer, currentRole } from './about-me.constants';
 import { NgStyle } from '@angular/common';
+import { skills } from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-about-me',
@@ -11,5 +12,5 @@ import { NgStyle } from '@angular/common';
 export class AboutMeComponent {
   currentEmployer = currentEmployer;
   currentRole = currentRole;
-  skillList = skills;
+  skillList = Object.entries(skills);
 }

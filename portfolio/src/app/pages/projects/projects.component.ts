@@ -4,12 +4,12 @@ import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { ProjectService } from '../../features/services/projects.service';
 import { finalize, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [NgTemplateOutlet, AsyncPipe],
+  imports: [NgTemplateOutlet, AsyncPipe, RouterLink],
   templateUrl: './projects.component.html',
 })
 export class ProjectsComponent implements OnInit {
@@ -24,11 +24,5 @@ export class ProjectsComponent implements OnInit {
     this.$projects = this.projectService
       .getProjects()
       .pipe(finalize(() => (this.loading = false)));
-  }
-
-  navigateToDetailPage(project: Project): void {
-    this.router.navigate([`/projects/${project.name.replaceAll(' ', '-')}`], {
-      state: { project },
-    });
   }
 }

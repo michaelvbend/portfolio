@@ -1,34 +1,67 @@
+@let project = $project | async;
 <section>
-  <h1 class="text-3xl md:text-5xl font-bold">
-    {{ project.name || "Project not found" }}
-  </h1>
+  @if (!project) {
+
+  <div class="flex-1">
+    <h1 class="text-3xl md:text-5xl font-bold">
+      {{ "Project not found" }}
+    </h1>
+  </div>
+  } @else {
+  <div class="flex flex-row justify-between items-end">
+    <div class="flex-1">
+      <h1 class="text-3xl md:text-5xl font-bold">
+        {{ project.name }}
+      </h1>
+    </div>
+    <div
+      class="flex flex-col space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-2"
+    >
+      <a
+        [href]="project.githubLink"
+        class="bg-gray-200 text-center dark:bg-gray-700 rounded-full px-3 py-1 text-sm md:text-xl font-semibold text-gray-700 dark:text-white"
+        >Go to GitHub</a
+      >
+      <a
+        [href]="project.websiteLink"
+        class="bg-blue-500 rounded-full px-3 py-1 text-sm md:text-xl font-semibold text-white"
+        >Go to app</a
+      >
+    </div>
+  </div>
   <hr class="border-1 my-5" />
 
   <div class="flex flex-col md:justify-around md:flex-row md:space-x-10">
     <div class="flex-row justify-around items-center">
+      @if(isLoading) {
       <div
-        class="w-fit h-fit mb-8 md:w-96 md:h-96 lg:w-96 lg:h-96 z-52 shadow-lg bg-gray-700 animate-pulse"
+        class="h-96 w-auto mb-8 md:w-96 md:h-96 lg:w-96 lg:h-96 z-52 shadow-lg bg-gray-700 animate-pulse"
       ></div>
-      <!-- <img
-        src="profile-pic.jpg"
-        class="w-fit h-fit mb-8 md:w-96 md:h-96 lg:w-96 lg:h-96 z-52 shadow-lg bg-gray-700 animate-pulse"
+      } @else {
+      <img
+        src="{{ project.imgUrl }}"
+        class="h-96 w-96 object-cover mb-8 md:w-96 md:h-96 lg:w-96 lg:h-96 z-52 shadow-lg"
         alt="Profile picture"
-      /> -->
+      />
+      }
     </div>
     <div class="flex-1 flex-col">
-      <p class="leading-6" [innerHTML]="project.description"></p>
+      <p class="leading-6" [innerHTML]="project?.description"></p>
 
-      <h3 class="text-2xl font-semibold my-1">Skills</h3>
+      <h3 class="text-2xl font-semibold my-5">Tech stack</h3>
       <div class="flex flex-1 flex-wrap items-center gap-1">
-        <!-- @for (skill of skillList; track $index) {
+        @for (tech of project?.techStack; track $index) {
         <div
           class="p-1 rounded-md text-white"
-          [ngStyle]="{ 'background-color': skill.color }"
+          [ngStyle]="{
+            'background-color': skillListConstant[tech].color
+          }"
         >
-          {{ skill.name }}
+          {{ skillListConstant[tech].formattedName }}
         </div>
-        } -->
+        }
       </div>
     </div>
   </div>
+  }
 </section>

@@ -7,6 +7,9 @@ import {
 } from '@angular/forms';
 import { ValidationErrorPipe } from '../../core/utils/validation-error.pipe';
 import { NgTemplateOutlet } from '@angular/common';
+import { ContactService } from '../../features/services/contact.service';
+import { Email } from './contact.interface';
+import { exhaustMap, tap, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -27,12 +30,32 @@ export class ContactComponent {
     message: new FormControl('', Validators.required),
   });
 
+  private submit$ = new Subject<void>();
+
+  constructor(private contactService: ContactService) {
+    this.submit$
+      .pipe(
+        exhaustMap(() => {
+          if (this.contactForm.valid) {
+            return this.contactService
+              .sendEmail(this.contactForm.value as Email)
+              .pipe(
+                tap(() => {
+                  this.showAlert = true;
+                  this.contactForm.reset();
+                })
+              );
+          }
+          return [];
+        })
+      )
+      .subscribe({
+        error: (err) => console.error('Error sending email:', err),
+      });
+  }
+
   onSubmit(): void {
-    if (this.contactForm.valid) {
-      // TODO: Send request to backend
-      this.showAlert = true;
-      this.contactForm.reset();
-    }
+    this.submit$.next();
   }
 
   dismissAlert(): void {

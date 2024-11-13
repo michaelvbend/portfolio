@@ -10,6 +10,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ContactService } from '../../features/services/contact.service';
 import { Email } from './contact.interface';
 import { exhaustMap, tap, Subject } from 'rxjs';
+import { EMAIL, GITHUB, LINKEDIN } from './contact.constants';
 
 @Component({
   selector: 'app-contact',
@@ -18,9 +19,10 @@ import { exhaustMap, tap, Subject } from 'rxjs';
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
-  email = 'mvanderbend@gmail.com';
-  linkedin = 'https://www.linkedin.com/in/michael-vd-bend/';
-  github = 'https://github.com/michaelvbend';
+  email = EMAIL;
+  linkedin = LINKEDIN;
+  github = GITHUB;
+
   showAlert = false;
 
   contactForm = new FormGroup({

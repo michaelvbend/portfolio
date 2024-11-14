@@ -3,7 +3,6 @@ import { Project } from './projects.interface';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { ProjectService } from '../../features/services/projects.service';
 import { finalize, Observable, of, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({

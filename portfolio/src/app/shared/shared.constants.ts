@@ -14,5 +14,5 @@ export const skills: {
   Kubernetes: { color: '#326ce5', formattedName: 'Kubernetes' },
   AWS: { color: '#ff9900', formattedName: 'AWS' },
   Azure: { color: '#0078d4', formattedName: 'Azure' },
-  GoogleAPI: { color: '#4285F4', formattedName: 'Google API' },
+  GoogleAPI: { color: '#4285F4', formattedName: 'Google Cloud' },
 };

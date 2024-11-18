@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgStyle } from '@angular/common';
 
 @Component({
@@ -7,4 +7,8 @@ import { NgStyle } from '@angular/common';
   imports: [],
   templateUrl: './blog.component.html',
 })
-export class BlogComponent {}
+export class BlogComponent implements OnInit {
+  ngOnInit(): void {
+    // TODO: add BlogService to fetch blogposts from backend
+  }
+}

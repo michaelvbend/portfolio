@@ -1,0 +1,36 @@
+@let article = $article | async;
+<section class="max-w-4xl mx-auto p-5">
+  @if (!article) {
+  <div class="flex-1">
+    <h1 class="text-3xl md:text-5xl font-bold">
+      {{ "Article not found" }}
+    </h1>
+  </div>
+  } @else {
+  <div class="flex flex-col">
+    <h1 class="text-3xl md:text-5xl font-bold mb-4">
+      {{ article.title }}
+    </h1>
+    <div class="flex items-center mb-4">
+      <p class="text-sm text-gray-600 mr-2">By {{ article.author }}</p>
+      <p class="text-sm text-gray-600">{{ article.date }}</p>
+    </div>
+    <img
+      class="w-full h-80 object-cover mb-4"
+      src="{{ article.imageUrl }}"
+      alt="{{ article.title }}"
+      onerror="this.onerror=null;this.src='image-placeholder.png';"
+    />
+    <p class="leading-6 mb-4" [innerHTML]="article.content"></p>
+    <div class="flex flex-wrap gap-2">
+      @for(tag of article.tags; track $index ) {
+      <span
+        class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded"
+      >
+        {{ tag }}
+      </span>
+      }
+    </div>
+  </div>
+  }
+</section>

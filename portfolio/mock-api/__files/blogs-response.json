@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Building a Portfolio with Angular",
+    "author": "Michael van der Bend",
+    "imageUrl": "blog-post.jpg",
+    "date": "2023-10-01",
+    "introduction": "Learn how to build a personal portfolio website using Angular, from setting up the project to integrating a mock API server.",
+    "content": "<p>In this blog post, I will walk you through the process of building a personal portfolio website using Angular. We will cover the basics of setting up an Angular project, creating components, and integrating a mock API server for development and testing purposes.</p><p>First, we will start by setting up the Angular CLI and creating a new project. Then, we will create the necessary components for our portfolio, such as the home page, about me page, and projects page. Finally, we will set up a mock API server using WireMock to serve mock data for our portfolio.</p>",
+    "tags": ["Angular", "Portfolio", "Web Development"],
+    "slug": "building-a-portfolio-with-angular"
+  },
+  {
+    "title": "Introduction to Reactive Programming with RxJS",
+    "author": "Michael van der Bend",
+    "date": "2023-09-15",
+    "introduction": "Explore the basics of reactive programming using RxJS, including core concepts and practical examples in an Angular application.",
+    "content": "<p>Reactive programming is a programming paradigm that deals with asynchronous data streams. In this blog post, we will explore the basics of reactive programming using RxJS, a library for reactive programming in JavaScript.</p><p>We will start by understanding the core concepts of reactive programming, such as observables, observers, and operators. Then, we will dive into some practical examples of using RxJS to handle asynchronous data streams in an Angular application.</p>",
+    "tags": ["RxJS", "Reactive Programming", "JavaScript"],
+    "slug": "introduction-to-reactive-programming-with-rxjs"
+  }
+]

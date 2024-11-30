@@ -1,16 +1,11 @@
 {
   "request": {
     "method": "GET",
-    "urlPath": "/api/projects",
-    "queryParameters": {
-      "name": {
-        "equalTo": "Arnhem Guide App"
-      }
-    }
+    "url": "/api/blog"
   },
   "response": {
     "status": 200,
-    "bodyFileName": "project-response.json",
+    "bodyFileName": "blogs-response.json",
     "headers": {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",

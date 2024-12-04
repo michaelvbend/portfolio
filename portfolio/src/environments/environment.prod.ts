@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.yourproductionserver.com',
+  apiUrl: 'https://portfolio-backend-alpha-topaz.vercel.app/',
 };

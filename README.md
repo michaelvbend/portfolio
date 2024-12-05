@@ -2,6 +2,8 @@
 
 Welcome to my portfolio website! This project showcases my work, skills, and experiences through a minimalistic and modern design. It is built with **Angular** for the frontend and **Express.js** for the backend. This project served as a learning opportunity to experiment with new Angular features and to appreciate the lightweight nature of Express.js compared to Java Spring Boot.
 
+Link to backend: https://github.com/michaelvbend/portfolio-backend
+
 ## Technologies Used
 
 ### Frontend

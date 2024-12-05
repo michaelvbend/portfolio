@@ -1,4 +1,4 @@
-<div class="mt-14 flex flex-col items-center py-8 font-light lg:py-8">
+<div class="mt-4 flex flex-col items-center py-8 font-light lg:py-8">
   <div class="space-x-3">
     <a [href]="contactDetails.LINKEDIN"
       ><i class="fa-brands fa-linkedin fa-xl dark:text-white"></i
@@ -6,9 +6,9 @@
     <a [href]="contactDetails.GITHUB">
       <i class="fa-brands fa-github fa-xl"></i
     ></a>
-    <a [href]="contactDetails.EMAIL">
-      <i class="fa-regular fa-envelope-open fa-xl"></i
-    ></a>
+    <a [href]="'mailto:' + contactDetails.EMAIL">
+      <i class="fa-regular fa-envelope-open fa-xl"></i>
+    </a>
   </div>
   <span class="mt-4 text-xs font-light lg:mt-4">
     &copy; {{ year }} Michael van der Bend

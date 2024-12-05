@@ -8,7 +8,7 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'blog', component: BlogComponent, title: 'Blog' },
   { path: 'blog/:articleName', component: BlogArticleComponent },
   { path: 'home', component: HomeComponent, title: 'Home' },
@@ -16,4 +16,5 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent, title: 'Projects' },
   { path: 'projects/:projectName', component: ProjectDetailsComponent },
   { path: 'contact', component: ContactComponent, title: 'Contact me' },
+  { path: '**', redirectTo: '/home' },
 ];

@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "urlPathPattern": "/api/blog/Building-a-Portfolio-with-Angular"
+    "urlPathPattern": "/api/blog/building-a-portfolio-with-angular"
   },
   "response": {
     "status": 200,

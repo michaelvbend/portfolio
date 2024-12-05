@@ -29,7 +29,7 @@ export class ProjectDetailsComponent implements OnInit {
   private setProject() {
     this.isLoading = true;
     this.$project = this.projectService
-      .getProjects(this.route.snapshot.params['slug'])
+      .getProjects(this.route.snapshot.params['projectName'])
       .pipe(
         map((result) => result[0]),
         finalize(() => (this.isLoading = false))

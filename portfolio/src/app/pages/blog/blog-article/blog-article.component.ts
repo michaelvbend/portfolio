@@ -25,7 +25,7 @@ export class BlogArticleComponent implements OnInit {
 
   private setProject() {
     this.$article = this.blogService
-      .getBlogArticles(this.route.snapshot.params['slug'])
+      .getBlogArticles(this.route.snapshot.params['articleName'])
       .pipe(map((result) => result[0]));
   }
 

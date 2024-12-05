@@ -1,8 +1,7 @@
-
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ProjectsComponent } from './projects.component';
 import { ProjectService } from '../../features/services/projects.service';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 describe('ProjectsComponent', () => {
@@ -10,20 +9,23 @@ describe('ProjectsComponent', () => {
   let fixture: ComponentFixture<ProjectsComponent>;
   let projectServiceMock: any;
   let routerMock: any;
+  let projectsSubject: Subject<any>;
 
   beforeEach(async () => {
+    projectsSubject = new Subject();
+
     projectServiceMock = {
-      getProjects: jest.fn().mockReturnValue(of([]))
+      getProjects: jest.fn().mockReturnValue(projectsSubject.asObservable()),
     };
 
     routerMock = {};
 
     await TestBed.configureTestingModule({
-      declarations: [ProjectsComponent],
+      imports: [ProjectsComponent], // Add ProjectsComponent to imports
       providers: [
         { provide: ProjectService, useValue: projectServiceMock },
-        { provide: Router, useValue: routerMock }
-      ]
+        { provide: Router, useValue: routerMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectsComponent);
@@ -43,6 +45,8 @@ describe('ProjectsComponent', () => {
 
   it('should set loading to false after getProjects completes', () => {
     component.ngOnInit();
+    projectsSubject.next([]);
+    projectsSubject.complete();
     expect(component.loading).toBe(false);
   });
 });

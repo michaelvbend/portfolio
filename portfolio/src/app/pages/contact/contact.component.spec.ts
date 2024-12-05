@@ -1,10 +1,17 @@
+import { of, Subject } from 'rxjs';
 import { ContactComponent } from './contact.component';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
+  let contactServiceMock: any;
+  let sendEmailSubject: Subject<any>;
 
   beforeEach(() => {
-    component = new ContactComponent();
+    sendEmailSubject = new Subject();
+    contactServiceMock = {
+      sendEmail: jest.fn().mockReturnValue(sendEmailSubject.asObservable()),
+    };
+    component = new ContactComponent(contactServiceMock);
   });
 
   it('should create', () => {
@@ -39,6 +46,8 @@ describe('ContactComponent', () => {
       message: 'Hello, this is a test message.',
     });
     component.onSubmit();
+    sendEmailSubject.next(true);
+    sendEmailSubject.complete();
     expect(component.showAlert).toBeTruthy();
     expect(component.contactForm.pristine).toBeTruthy();
     expect(component.contactForm.untouched).toBeTruthy();

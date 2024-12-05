@@ -1,28 +1,38 @@
-# Portfolio
+# Portfolio Website
 
-This project is a personal portfolio website built with Angular. It showcases various projects and provides information about the developer.
+Welcome to my portfolio website! This project showcases my work, skills, and experiences through a minimalistic and modern design. It is built with **Angular** for the frontend and **Express.js** for the backend. This project served as a learning opportunity to experiment with new Angular features and to appreciate the lightweight nature of Express.js compared to Java Spring Boot.
 
-## Table of Contents
+## Technologies Used
 
-- [Getting Started](#getting-started)
-- [Development Server](#development-server)
-- [Code Scaffolding](#code-scaffolding)
-- [Build](#build)
-- [Running Unit Tests](#running-unit-tests)
-- [Running End-to-End Tests](#running-end-to-end-tests)
-- [Mock API Server](#mock-api-server)
-- [Further Help](#further-help)
+### Frontend
+
+- **Angular**: For creating a dynamic and responsive UI.
+
+### Backend
+
+- **Express.js**: A lightweight framework for handling API requests.
+- **Node.js**: For the backend runtime environment.
 
 ## Getting Started
 
-To get started with this project, clone the repository and install the dependencies:
+### Prerequisites
 
-```sh
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-npm install
-```
+- **Node.js** and **npm** installed on your machine.
+- **Angular CLI** for building and running the frontend.
 
-## Mock API Server
+### Installation
 
-Run npm run wiremock to start the WireMock server. This will serve mock API responses for development and testing purposes.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/michaelvbend/portfolio.git
+   cd portfolio
+   ```
+
+   ## Development server
+
+2. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+   ## Running unit tests
+
+3. Run `npm test` to execute the unit tests.

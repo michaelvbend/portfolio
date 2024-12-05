@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, NgStyle, NgTemplateOutlet } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Project } from '../projects.interface';
 import { skills } from '../../../shared/shared.constants';
 import { ProjectService } from '../../../features/services/projects.service';
-import { finalize, first, map, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
@@ -29,7 +29,7 @@ export class ProjectDetailsComponent implements OnInit {
   private setProject() {
     this.isLoading = true;
     this.$project = this.projectService
-      .getProjects(this.route.snapshot.params['projectName'])
+      .getProjects(this.route.snapshot.params['projectSlug'])
       .pipe(
         map((result) => result[0]),
         finalize(() => (this.isLoading = false))

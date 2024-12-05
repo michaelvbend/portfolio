@@ -10,9 +10,9 @@ export class ProjectService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProjects(projectName?: string): Observable<Project[]> {
-    const url = projectName
-      ? this.projectsUrl + '/' + projectName
+  getProjects(projectSlug?: string): Observable<Project[]> {
+    const url = projectSlug
+      ? this.projectsUrl + '/' + projectSlug
       : this.projectsUrl;
     return this.httpClient
       .get<Project[]>(url)

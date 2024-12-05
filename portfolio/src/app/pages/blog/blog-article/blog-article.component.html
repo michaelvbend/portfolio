@@ -17,7 +17,7 @@
     </div>
     <img
       class="w-full h-80 object-cover mb-4"
-      src="{{ article.imageUrl }}"
+      [src]="article.imageUrl"
       alt="{{ article.title }}"
       onerror="this.onerror=null;this.src='image-placeholder.png';"
     />

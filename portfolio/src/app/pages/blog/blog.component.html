@@ -3,7 +3,12 @@
   <h1 class="text-3xl md:text-5xl font-bold">Blog</h1>
   <hr class="border-1 my-5" />
   <div class="flex flex-col flex-wrap gap-2 justify-center md:justify-between">
-    @for (article of blogArticles; track $index) {
+    @if(loading) {
+    <ng-container *ngTemplateOutlet="articleCardSkeleton"></ng-container>
+    <ng-container *ngTemplateOutlet="articleCardSkeleton"></ng-container>
+    <ng-container *ngTemplateOutlet="articleCardSkeleton"></ng-container>
+
+    } @for (article of blogArticles; track $index) {
     <ng-container
       *ngTemplateOutlet="articleCard; context: { article }"
     ></ng-container>
@@ -19,7 +24,7 @@
   >
     <img
       class="md:w-72 w-full h-48 object-cover"
-      src="{{ article.imageUrl }}"
+      [src]="article.imageUrl"
       alt="{{ article.title }}"
       onerror="this.onerror=null;this.src='image-placeholder.png';"
     />
@@ -29,6 +34,22 @@
       <a [routerLink]="['/blog', article.slug]" class="pt-2 text-blue-500"
         >Read more</a
       >
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #articleCardSkeleton>
+  <div
+    class="md:flex-row flex flex-col rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800"
+  >
+    <img
+      class="md:w-72 w-full h-48 object-cover"
+      src="image-placeholder.png"
+      alt="skeleton image"
+    />
+    <div class="flex flex-col p-5">
+      <h1 class="text-2xl font-bold">Loading</h1>
+      <h3 class="text-xl">Loading blog post</h3>
     </div>
   </div>
 </ng-template>

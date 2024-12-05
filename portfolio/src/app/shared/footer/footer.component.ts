@@ -1,6 +1,7 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { EMAIL, GITHUB, LINKEDIN } from '../../pages/contact/contact.constants';
 
 @Component({
   selector: 'shared-footer',
@@ -11,4 +12,5 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class FooterComponent {
   year = new Date().getFullYear();
+  contactDetails = { EMAIL, LINKEDIN, GITHUB };
 }

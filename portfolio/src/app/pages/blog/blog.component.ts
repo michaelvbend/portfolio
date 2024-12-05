@@ -6,7 +6,7 @@ import {
   NgTemplateOutlet,
 } from '@angular/common';
 import { BlogService } from '../../features/services/blog.service';
-import { of } from 'rxjs';
+import { finalize, of } from 'rxjs';
 import { Blog } from './blog.interface';
 import { RouterLink } from '@angular/router';
 
@@ -17,10 +17,13 @@ import { RouterLink } from '@angular/router';
   templateUrl: './blog.component.html',
 })
 export class BlogComponent implements OnInit {
+  loading = true;
   $blogArticles = of<Blog[]>([]);
   constructor(private blogService: BlogService) {}
 
   ngOnInit(): void {
-    this.$blogArticles = this.blogService.getBlogArticles();
+    this.$blogArticles = this.blogService
+      .getBlogArticles()
+      .pipe(finalize(() => (this.loading = false)));
   }
 }

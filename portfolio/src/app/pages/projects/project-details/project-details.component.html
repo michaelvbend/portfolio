@@ -1,7 +1,6 @@
 @let project = $project | async;
 <section>
   @if (!project) {
-
   <div class="flex-1">
     <h1 class="text-3xl md:text-5xl font-bold">
       {{ "Project not found" }}
@@ -39,7 +38,7 @@
       ></div>
       } @else {
       <img
-        src="{{ project.imgUrl }}"
+        [src]="project.imgUrl"
         class="w-full h-auto max-w-md object-cover mb-8 z-52 shadow-lg"
         alt="Profile picture"
       />

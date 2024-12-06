@@ -1,6 +1,12 @@
 @let project = $project | async;
 <section>
-  @if (!project) {
+  @if(isLoading) {
+  <div class="flex-1">
+    <h1 class="text-3xl md:text-5xl font-bold">
+      {{ "Loading project..." }}
+    </h1>
+  </div>
+  } @else if (!project) {
   <div class="flex-1">
     <h1 class="text-3xl md:text-5xl font-bold">
       {{ "Project not found" }}

@@ -6,10 +6,9 @@ import { Blog } from '../blog.interface';
 import { BlogService } from '../../../features/services/blog.service';
 
 @Component({
-  selector: 'app-blog-article',
-  standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './blog-article.component.html',
+    selector: 'app-blog-article',
+    imports: [AsyncPipe],
+    templateUrl: './blog-article.component.html'
 })
 export class BlogArticleComponent implements OnInit {
   $article!: Observable<Blog>;

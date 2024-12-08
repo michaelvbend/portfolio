@@ -5,8 +5,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { inject } from '@vercel/analytics';
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink, TopBarComponent, FooterComponent],
+  imports: [RouterOutlet, TopBarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

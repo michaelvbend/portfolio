@@ -11,10 +11,9 @@ import { Blog } from './blog.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-blog',
-  standalone: true,
-  imports: [AsyncPipe, NgTemplateOutlet, RouterLink],
-  templateUrl: './blog.component.html',
+    selector: 'app-blog',
+    imports: [AsyncPipe, NgTemplateOutlet, RouterLink],
+    templateUrl: './blog.component.html'
 })
 export class BlogComponent implements OnInit {
   loading = true;

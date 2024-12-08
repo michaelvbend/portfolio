@@ -8,8 +8,7 @@ import { finalize, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
-  standalone: true,
-  imports: [NgTemplateOutlet, AsyncPipe, NgStyle],
+  imports: [AsyncPipe, NgStyle],
   templateUrl: './project-details.component.html',
 })
 export class ProjectDetailsComponent implements OnInit {

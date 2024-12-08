@@ -6,10 +6,9 @@ import { finalize, Observable, of, tap } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-projects',
-  standalone: true,
-  imports: [NgTemplateOutlet, AsyncPipe, RouterLink],
-  templateUrl: './projects.component.html',
+    selector: 'app-projects',
+    imports: [NgTemplateOutlet, AsyncPipe, RouterLink],
+    templateUrl: './projects.component.html'
 })
 export class ProjectsComponent implements OnInit {
   $projects: Observable<Project[]> = of([]);

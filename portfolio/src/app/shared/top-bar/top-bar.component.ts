@@ -4,8 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'shared-top-bar',
-  standalone: true,
-  imports: [RouterLink, NgTemplateOutlet, NgClass],
+  imports: [NgTemplateOutlet, NgClass],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css',
 })

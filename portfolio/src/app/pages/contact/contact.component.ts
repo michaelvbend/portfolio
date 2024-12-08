@@ -13,10 +13,9 @@ import { exhaustMap, tap, Subject } from 'rxjs';
 import { EMAIL, GITHUB, LINKEDIN } from './contact.constants';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [ReactiveFormsModule, ValidationErrorPipe, NgTemplateOutlet],
-  templateUrl: './contact.component.html',
+    selector: 'app-contact',
+    imports: [ReactiveFormsModule, ValidationErrorPipe, NgTemplateOutlet],
+    templateUrl: './contact.component.html'
 })
 export class ContactComponent {
   email = EMAIL;

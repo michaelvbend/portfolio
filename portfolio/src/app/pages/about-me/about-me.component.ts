@@ -4,10 +4,9 @@ import { NgStyle } from '@angular/common';
 import { skills } from '../../shared/shared.constants';
 
 @Component({
-  selector: 'app-about-me',
-  standalone: true,
-  imports: [NgStyle],
-  templateUrl: './about-me.component.html',
+    selector: 'app-about-me',
+    imports: [NgStyle],
+    templateUrl: './about-me.component.html'
 })
 export class AboutMeComponent {
   currentEmployer = currentEmployer;

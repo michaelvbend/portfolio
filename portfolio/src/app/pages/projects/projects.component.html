@@ -1,9 +1,8 @@
-@let projects = $projects | async;
 <section>
   <h1 class="text-3xl md:text-5xl font-bold">Projects</h1>
   <hr class="border-1 my-5" />
   <div class="flex flex-row flex-wrap gap-2 justify-center md:justify-between">
-    @if (loading) { @for(skeleton of skeletons; track $index) {
+    @if (projects.isLoading()) { @for(skeleton of skeletons; track $index) {
     <div
       class="max-w-sm md:max-w-xs rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 animate-pulse"
     >
@@ -21,7 +20,7 @@
         ></div>
       </div>
     </div>
-    } } @else { @for (project of projects; track $index) {
+    } } @else { @for (project of projects.value(); track $index) {
     <ng-container
       *ngTemplateOutlet="projectCard; context: { project: project }"
     ></ng-container>

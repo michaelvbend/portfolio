@@ -3,10 +3,15 @@ import { Injectable } from '@angular/core';
 import { Project } from '../../pages/projects/projects.interface';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
   private projectsUrl = environment.apiUrl + '/api/projects';
+
+  projects = rxResource({
+    loader: () => this.getProjects(),
+  });
 
   constructor(private httpClient: HttpClient) {}
 

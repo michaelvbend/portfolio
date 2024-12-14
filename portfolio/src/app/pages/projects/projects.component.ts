@@ -1,26 +1,21 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, ResourceRef, signal } from '@angular/core';
 import { Project } from './projects.interface';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { ProjectService } from '../../features/services/projects.service';
-import { finalize, Observable, of, tap } from 'rxjs';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-projects',
-    imports: [NgTemplateOutlet, AsyncPipe, RouterLink],
-    templateUrl: './projects.component.html'
+  selector: 'app-projects',
+  imports: [NgTemplateOutlet, RouterLink],
+  templateUrl: './projects.component.html',
 })
 export class ProjectsComponent implements OnInit {
-  $projects: Observable<Project[]> = of([]);
-  loading = false;
+  projects!: ResourceRef<Project[]>;
   skeletons = Array(3).fill(0);
 
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.loading = true;
-    this.$projects = this.projectService
-      .getProjects()
-      .pipe(finalize(() => (this.loading = false)));
+    this.projects = this.projectService.projects;
   }
 }

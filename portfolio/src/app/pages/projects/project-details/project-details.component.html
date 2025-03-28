@@ -27,11 +27,19 @@
         class="bg-gray-200 text-center dark:bg-gray-700 rounded-full px-3 py-1 text-sm md:text-xl font-semibold text-gray-700 dark:text-white"
         >Go to GitHub</a
       >
+      @if (project?.websiteLink) {
       <a
         [href]="project.websiteLink"
         class="bg-blue-500 rounded-full px-3 py-1 text-sm md:text-xl font-semibold text-white"
         >Go to app</a
-      >
+      >  
+      }
+      @else {
+      <button
+      class="bg-red-500 rounded-full px-3 py-1 text-sm md:text-xl font-semibold text-white"
+      [disabled]="true"
+        >Not live</button>
+      }
     </div>
   </div>
   <hr class="border-1 my-5" />

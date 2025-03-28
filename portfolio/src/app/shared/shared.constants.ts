@@ -5,6 +5,7 @@ export const skills: {
   Spring: { color: '#6db33f', formattedName: 'Spring' },
   Angular: { color: '#dd0031', formattedName: 'Angular' },
   ReactNative: { color: '#61dafb', formattedName: 'React Native' },
+  React: { color: '#61dafb', formattedName: 'React' },
   Python: { color: '#306998', formattedName: 'Python' },
   JavaScript: { color: '#f7df1e', formattedName: 'JavaScript' },
   TypeScript: { color: '#3178c6', formattedName: 'TypeScript' },

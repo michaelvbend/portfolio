@@ -1,2 +1,2 @@
 export const currentRole = 'Full-stack Developer';
-export const currentEmployer = 'Rabobank';
+export const currentEmployer = 'Booking.com';

@@ -1,0 +1,125 @@
+/* ─── Layout ─────────────────────────────────────────────── */
+.maintenance-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Background flash ──────────────────────────────────── */
+.lightning-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, #fff9 0%, transparent 70%);
+  opacity: 0;
+  animation: bg-flash 5s ease-in-out infinite;
+}
+
+@keyframes bg-flash {
+  0%   { opacity: 0; }
+  4%   { opacity: 0.07; }
+  4.5% { opacity: 0; }
+  5%   { opacity: 0.05; }
+  5.5% { opacity: 0; }
+  6%   { opacity: 0.12; }
+  7%   { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ─── Bolt icon ─────────────────────────────────────────── */
+.bolt-container {
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.bolt-icon {
+  font-size: 5rem;
+  color: #fbbf24;
+  animation: bolt-flicker 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px #fbbf24) drop-shadow(0 0 20px #fde68a);
+}
+
+@keyframes bolt-flicker {
+  /* idle — fully lit */
+  0%   { opacity: 1;    filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 24px #fde68a) drop-shadow(0 0 48px #fef08a); }
+
+  /* first stutter */
+  4%   { opacity: 0.2;  filter: none; }
+  4.3% { opacity: 1;    filter: drop-shadow(0 0 12px #fbbf24) drop-shadow(0 0 40px #fde68a) drop-shadow(0 0 80px #fff); }
+  4.6% { opacity: 0.1;  filter: none; }
+  5%   { opacity: 1;    filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 24px #fde68a); }
+
+  /* second stutter — sharper */
+  5.5% { opacity: 0.05; filter: none; }
+  5.7% { opacity: 1;    filter: drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 60px #fde68a) drop-shadow(0 0 100px #fff8); }
+  6%   { opacity: 0.2;  filter: drop-shadow(0 0 4px #fbbf24); }
+  6.4% { opacity: 1;    filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 24px #fde68a); }
+
+  /* settle back to idle glow */
+  10%  { opacity: 1;    filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 24px #fde68a) drop-shadow(0 0 48px #fef08a); }
+  100% { opacity: 1;    filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 24px #fde68a) drop-shadow(0 0 48px #fef08a); }
+}
+
+/* ─── Typography ─────────────────────────────────────────── */
+.name {
+  font-family: 'Poppins', Futura, serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 0 40px #ffffff44;
+}
+
+@media (min-width: 640px) {
+  .name {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .name {
+    font-size: 4.5rem;
+  }
+}
+
+.coming-soon {
+  font-family: 'Poppins', Futura, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fbbf24;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: text-glow 5s ease-in-out infinite;
+}
+
+@keyframes text-glow {
+  0%   { text-shadow: 0 0 8px #fbbf2488, 0 0 20px #fde68a44; }
+  4.3% { text-shadow: 0 0 16px #fbbf24cc, 0 0 48px #fde68a88, 0 0 80px #fff4; }
+  5%   { text-shadow: 0 0 8px #fbbf2488, 0 0 20px #fde68a44; }
+  5.7% { text-shadow: 0 0 24px #fbbf24ff, 0 0 64px #fde68acc, 0 0 100px #fff6; }
+  6.4% { text-shadow: 0 0 8px #fbbf2488, 0 0 20px #fde68a44; }
+  100% { text-shadow: 0 0 8px #fbbf2488, 0 0 20px #fde68a44; }
+}
+
+.subtitle {
+  font-family: 'Poppins', Futura, serif;
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+}
